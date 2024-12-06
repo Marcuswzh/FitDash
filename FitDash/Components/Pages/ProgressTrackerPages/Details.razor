@@ -1,0 +1,62 @@
+﻿@page "/progresstrackers/details"
+@using Microsoft.EntityFrameworkCore
+@using FitDash.Domain
+@inject IDbContextFactory<FitDash.Data.FitDashContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>ProgressTracker</h2>
+    <hr />
+    @if (progresstracker is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">UserID</dt>
+            <dd class="col-sm-10">@progresstracker.UserID</dd>
+            <dt class="col-sm-2">DateRecorded</dt>
+            <dd class="col-sm-10">@progresstracker.DateRecorded</dd>
+            <dt class="col-sm-2">Weight</dt>
+            <dd class="col-sm-10">@progresstracker.Weight</dd>
+            <dt class="col-sm-2">BMI</dt>
+            <dd class="col-sm-10">@progresstracker.BMI</dd>
+            <dt class="col-sm-2">BodyFatPercentage</dt>
+            <dd class="col-sm-10">@progresstracker.BodyFatPercentage</dd>
+            <dt class="col-sm-2">DateCreated</dt>
+            <dd class="col-sm-10">@progresstracker.DateCreated</dd>
+            <dt class="col-sm-2">DateUpdated</dt>
+            <dd class="col-sm-10">@progresstracker.DateUpdated</dd>
+            <dt class="col-sm-2">CreatedBy</dt>
+            <dd class="col-sm-10">@progresstracker.CreatedBy</dd>
+            <dt class="col-sm-2">UpdatedBy</dt>
+            <dd class="col-sm-10">@progresstracker.UpdatedBy</dd>
+        </dl>
+        <div>
+            <a href="@($"/progresstrackers/edit?id={progresstracker.Id}")">Edit</a> |
+            <a href="@($"/progresstrackers")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private ProgressTracker? progresstracker;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        progresstracker = await context.ProgressTracker.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (progresstracker is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

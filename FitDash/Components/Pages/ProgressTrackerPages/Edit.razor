@@ -1,0 +1,129 @@
+﻿@page "/progresstrackers/edit"
+@using Microsoft.EntityFrameworkCore
+@using FitDash.Domain
+@inject IDbContextFactory<FitDash.Data.FitDashContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h2>ProgressTracker</h2>
+<hr />
+@if (ProgressTracker is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="ProgressTracker" OnValidSubmit="UpdateProgressTracker" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="ProgressTracker.Id" value="@ProgressTracker.Id" />
+                <div class="mb-3">
+                    <label for="userid" class="form-label">UserID:</label>
+                    <InputNumber id="userid" @bind-Value="ProgressTracker.UserID" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.UserID" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="daterecorded" class="form-label">DateRecorded:</label>
+                    <InputDate id="daterecorded" @bind-Value="ProgressTracker.DateRecorded" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.DateRecorded" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="weight" class="form-label">Weight:</label>
+                    <InputNumber id="weight" @bind-Value="ProgressTracker.Weight" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.Weight" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="bmi" class="form-label">BMI:</label>
+                    <InputNumber id="bmi" @bind-Value="ProgressTracker.BMI" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.BMI" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="bodyfatpercentage" class="form-label">BodyFatPercentage:</label>
+                    <InputNumber id="bodyfatpercentage" @bind-Value="ProgressTracker.BodyFatPercentage" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.BodyFatPercentage" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="datecreated" class="form-label">DateCreated:</label>
+                    <InputDate id="datecreated" @bind-Value="ProgressTracker.DateCreated" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.DateCreated" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="dateupdated" class="form-label">DateUpdated:</label>
+                    <InputDate id="dateupdated" @bind-Value="ProgressTracker.DateUpdated" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.DateUpdated" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="createdby" class="form-label">CreatedBy:</label>
+                    <InputText id="createdby" @bind-Value="ProgressTracker.CreatedBy" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.CreatedBy" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="updatedby" class="form-label">UpdatedBy:</label>
+                    <InputText id="updatedby" @bind-Value="ProgressTracker.UpdatedBy" class="form-control" />
+                    <ValidationMessage For="() => ProgressTracker.UpdatedBy" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/progresstrackers">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private ProgressTracker? ProgressTracker { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        ProgressTracker ??= await context.ProgressTracker.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (ProgressTracker is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateProgressTracker()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(ProgressTracker!).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!ProgressTrackerExists(ProgressTracker!.Id))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/progresstrackers");
+    }
+
+    private bool ProgressTrackerExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.ProgressTracker.Any(e => e.Id == id);
+    }
+}

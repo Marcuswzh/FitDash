@@ -1,0 +1,84 @@
+﻿@page "/progresstrackers/create"
+@using Microsoft.EntityFrameworkCore
+@using FitDash.Domain
+@inject IDbContextFactory<FitDash.Data.FitDashContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>ProgressTracker</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="ProgressTracker" OnValidSubmit="AddProgressTracker" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="userid" class="form-label">UserID:</label> 
+                <InputNumber id="userid" @bind-Value="ProgressTracker.UserID" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.UserID" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="daterecorded" class="form-label">DateRecorded:</label> 
+                <InputDate id="daterecorded" @bind-Value="ProgressTracker.DateRecorded" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.DateRecorded" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="weight" class="form-label">Weight:</label> 
+                <InputNumber id="weight" @bind-Value="ProgressTracker.Weight" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.Weight" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="bmi" class="form-label">BMI:</label> 
+                <InputNumber id="bmi" @bind-Value="ProgressTracker.BMI" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.BMI" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="bodyfatpercentage" class="form-label">BodyFatPercentage:</label> 
+                <InputNumber id="bodyfatpercentage" @bind-Value="ProgressTracker.BodyFatPercentage" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.BodyFatPercentage" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="datecreated" class="form-label">DateCreated:</label> 
+                <InputDate id="datecreated" @bind-Value="ProgressTracker.DateCreated" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.DateCreated" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="dateupdated" class="form-label">DateUpdated:</label> 
+                <InputDate id="dateupdated" @bind-Value="ProgressTracker.DateUpdated" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.DateUpdated" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="createdby" class="form-label">CreatedBy:</label> 
+                <InputText id="createdby" @bind-Value="ProgressTracker.CreatedBy" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.CreatedBy" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="updatedby" class="form-label">UpdatedBy:</label> 
+                <InputText id="updatedby" @bind-Value="ProgressTracker.UpdatedBy" class="form-control" /> 
+                <ValidationMessage For="() => ProgressTracker.UpdatedBy" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/progresstrackers">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private ProgressTracker ProgressTracker { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddProgressTracker()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.ProgressTracker.Add(ProgressTracker);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/progresstrackers");
+    }
+}

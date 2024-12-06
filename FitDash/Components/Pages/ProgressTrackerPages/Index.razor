@@ -1,0 +1,44 @@
+﻿@page "/progresstrackers"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using FitDash.Domain
+@using FitDash.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<FitDash.Data.FitDashContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="progresstrackers/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.ProgressTracker">
+    <PropertyColumn Property="progresstracker => progresstracker.UserID" />
+    <PropertyColumn Property="progresstracker => progresstracker.DateRecorded" />
+    <PropertyColumn Property="progresstracker => progresstracker.Weight" />
+    <PropertyColumn Property="progresstracker => progresstracker.BMI" />
+    <PropertyColumn Property="progresstracker => progresstracker.BodyFatPercentage" />
+    <PropertyColumn Property="progresstracker => progresstracker.DateCreated" />
+    <PropertyColumn Property="progresstracker => progresstracker.DateUpdated" />
+    <PropertyColumn Property="progresstracker => progresstracker.CreatedBy" />
+    <PropertyColumn Property="progresstracker => progresstracker.UpdatedBy" />
+
+    <TemplateColumn Context="progresstracker">
+        <a href="@($"progresstrackers/edit?id={progresstracker.Id}")">Edit</a> |
+        <a href="@($"progresstrackers/details?id={progresstracker.Id}")">Details</a> |
+        <a href="@($"progresstrackers/delete?id={progresstracker.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private FitDashContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

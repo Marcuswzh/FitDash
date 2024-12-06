@@ -1,0 +1,46 @@
+﻿@page "/meals"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using FitDash.Domain
+@using FitDash.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<FitDash.Data.FitDashContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="meals/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Meal">
+    <PropertyColumn Property="meal => meal.UserID" />
+    <PropertyColumn Property="meal => meal.MealName" />
+    <PropertyColumn Property="meal => meal.Calories" />
+    <PropertyColumn Property="meal => meal.Proteins" />
+    <PropertyColumn Property="meal => meal.Fats" />
+    <PropertyColumn Property="meal => meal.Carbs" />
+    <PropertyColumn Property="meal => meal.MealDate" />
+    <PropertyColumn Property="meal => meal.DateCreated" />
+    <PropertyColumn Property="meal => meal.DateUpdated" />
+    <PropertyColumn Property="meal => meal.CreatedBy" />
+    <PropertyColumn Property="meal => meal.UpdatedBy" />
+
+    <TemplateColumn Context="meal">
+        <a href="@($"meals/edit?id={meal.Id}")">Edit</a> |
+        <a href="@($"meals/details?id={meal.Id}")">Details</a> |
+        <a href="@($"meals/delete?id={meal.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private FitDashContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

@@ -1,0 +1,66 @@
+﻿@page "/meals/details"
+@using Microsoft.EntityFrameworkCore
+@using FitDash.Domain
+@inject IDbContextFactory<FitDash.Data.FitDashContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Meal</h2>
+    <hr />
+    @if (meal is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">UserID</dt>
+            <dd class="col-sm-10">@meal.UserID</dd>
+            <dt class="col-sm-2">MealName</dt>
+            <dd class="col-sm-10">@meal.MealName</dd>
+            <dt class="col-sm-2">Calories</dt>
+            <dd class="col-sm-10">@meal.Calories</dd>
+            <dt class="col-sm-2">Proteins</dt>
+            <dd class="col-sm-10">@meal.Proteins</dd>
+            <dt class="col-sm-2">Fats</dt>
+            <dd class="col-sm-10">@meal.Fats</dd>
+            <dt class="col-sm-2">Carbs</dt>
+            <dd class="col-sm-10">@meal.Carbs</dd>
+            <dt class="col-sm-2">MealDate</dt>
+            <dd class="col-sm-10">@meal.MealDate</dd>
+            <dt class="col-sm-2">DateCreated</dt>
+            <dd class="col-sm-10">@meal.DateCreated</dd>
+            <dt class="col-sm-2">DateUpdated</dt>
+            <dd class="col-sm-10">@meal.DateUpdated</dd>
+            <dt class="col-sm-2">CreatedBy</dt>
+            <dd class="col-sm-10">@meal.CreatedBy</dd>
+            <dt class="col-sm-2">UpdatedBy</dt>
+            <dd class="col-sm-10">@meal.UpdatedBy</dd>
+        </dl>
+        <div>
+            <a href="@($"/meals/edit?id={meal.Id}")">Edit</a> |
+            <a href="@($"/meals")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Meal? meal;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        meal = await context.Meal.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (meal is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}
