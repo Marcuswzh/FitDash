@@ -87,7 +87,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        Workout ??= await context.Workout.FirstOrDefaultAsync(m => m.Id == Id);
+        Workout ??= await context.Workouts.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (Workout is null)
         {
@@ -124,6 +124,6 @@ else
     private bool WorkoutExists(int id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.Workout.Any(e => e.Id == id);
+        return context.Workouts.Any(e => e.Id == id);
     }
 }

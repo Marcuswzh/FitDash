@@ -68,7 +68,7 @@ namespace FitDash.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Meal");
+                    b.ToTable("Meals");
 
                     b.HasData(
                         new
@@ -77,10 +77,10 @@ namespace FitDash.Migrations
                             Calories = 400f,
                             Carbs = 50f,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6327),
-                            DateUpdated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6327),
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9537),
                             Fats = 10f,
-                            MealDate = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6326),
+                            MealDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536),
                             MealName = "Breakfast",
                             Proteins = 25f,
                             UpdatedBy = "System",
@@ -92,10 +92,10 @@ namespace FitDash.Migrations
                             Calories = 600f,
                             Carbs = 70f,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6330),
-                            DateUpdated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6330),
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540),
                             Fats = 15f,
-                            MealDate = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6330),
+                            MealDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9539),
                             MealName = "Lunch",
                             Proteins = 40f,
                             UpdatedBy = "System",
@@ -142,7 +142,7 @@ namespace FitDash.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("ProgressTracker");
+                    b.ToTable("ProgressTrackers");
 
                     b.HasData(
                         new
@@ -151,7 +151,7 @@ namespace FitDash.Migrations
                             BMI = 24.5f,
                             BodyFatPercentage = 20f,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateRecorded = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6443),
+                            DateRecorded = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9643),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserID = 1,
                             Weight = 70f
@@ -162,7 +162,7 @@ namespace FitDash.Migrations
                             BMI = 22f,
                             BodyFatPercentage = 18f,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateRecorded = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6445),
+                            DateRecorded = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9645),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserID = 2,
                             Weight = 60f
@@ -220,16 +220,16 @@ namespace FitDash.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             ActivityLevel = "Active",
-                            DateCreated = new DateTime(2024, 12, 8, 22, 43, 41, 250, DateTimeKind.Local).AddTicks(5979),
+                            DateCreated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9138),
                             DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(2024, 12, 8, 22, 43, 41, 250, DateTimeKind.Local).AddTicks(5993),
+                            DateUpdated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9155),
                             Email = "johndoe@example.com",
                             Gender = "Male",
                             Height = 175f,
@@ -241,9 +241,9 @@ namespace FitDash.Migrations
                         {
                             Id = 2,
                             ActivityLevel = "Active",
-                            DateCreated = new DateTime(2024, 12, 8, 22, 43, 41, 250, DateTimeKind.Local).AddTicks(5996),
+                            DateCreated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159),
                             DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(2024, 12, 8, 22, 43, 41, 250, DateTimeKind.Local).AddTicks(5997),
+                            DateUpdated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159),
                             Email = "janedoe@example.com",
                             Gender = "Male",
                             Height = 175f,
@@ -293,29 +293,29 @@ namespace FitDash.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Workout");
+                    b.ToTable("Workouts");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CaloriesBurned = 300f,
-                            DateCreated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6207),
-                            DateUpdated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6208),
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409),
                             Duration = 30,
                             UserID = 1,
-                            WorkoutDate = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6207),
+                            WorkoutDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9408),
                             WorkoutName = "Cardio"
                         },
                         new
                         {
                             Id = 2,
                             CaloriesBurned = 400f,
-                            DateCreated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6210),
-                            DateUpdated = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6211),
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9412),
                             Duration = 45,
                             UserID = 2,
-                            WorkoutDate = new DateTime(2024, 12, 8, 14, 43, 41, 250, DateTimeKind.Utc).AddTicks(6210),
+                            WorkoutDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411),
                             WorkoutName = "Strength Training"
                         });
                 });

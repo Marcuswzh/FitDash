@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitDash.Migrations
 {
     [DbContext(typeof(FitDashContext))]
-    [Migration("20241206115529_Initial")]
-    partial class Initial
+    [Migration("20241208152417_Current")]
+    partial class Current
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,7 +71,39 @@ namespace FitDash.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Meal");
+                    b.ToTable("Meals");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Calories = 400f,
+                            Carbs = 50f,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9537),
+                            Fats = 10f,
+                            MealDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536),
+                            MealName = "Breakfast",
+                            Proteins = 25f,
+                            UpdatedBy = "System",
+                            UserID = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Calories = 600f,
+                            Carbs = 70f,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540),
+                            Fats = 15f,
+                            MealDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9539),
+                            MealName = "Lunch",
+                            Proteins = 40f,
+                            UpdatedBy = "System",
+                            UserID = 2
+                        });
                 });
 
             modelBuilder.Entity("FitDash.Domain.ProgressTracker", b =>
@@ -113,7 +145,31 @@ namespace FitDash.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("ProgressTracker");
+                    b.ToTable("ProgressTrackers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BMI = 24.5f,
+                            BodyFatPercentage = 20f,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateRecorded = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9643),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = 1,
+                            Weight = 70f
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BMI = 22f,
+                            BodyFatPercentage = 18f,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateRecorded = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9645),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = 2,
+                            Weight = 60f
+                        });
                 });
 
             modelBuilder.Entity("FitDash.Domain.User", b =>
@@ -167,7 +223,37 @@ namespace FitDash.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActivityLevel = "Active",
+                            DateCreated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9138),
+                            DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9155),
+                            Email = "johndoe@example.com",
+                            Gender = "Male",
+                            Height = 175f,
+                            Name = "John Doe",
+                            Password = "P@ssword1",
+                            Weight = 70f
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ActivityLevel = "Active",
+                            DateCreated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159),
+                            DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159),
+                            Email = "janedoe@example.com",
+                            Gender = "Male",
+                            Height = 175f,
+                            Name = "Jane Doe",
+                            Password = "P@ssword1",
+                            Weight = 70f
+                        });
                 });
 
             modelBuilder.Entity("FitDash.Domain.Workout", b =>
@@ -210,7 +296,31 @@ namespace FitDash.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Workout");
+                    b.ToTable("Workouts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CaloriesBurned = 300f,
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409),
+                            Duration = 30,
+                            UserID = 1,
+                            WorkoutDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9408),
+                            WorkoutName = "Cardio"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CaloriesBurned = 400f,
+                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411),
+                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9412),
+                            Duration = 45,
+                            UserID = 2,
+                            WorkoutDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411),
+                            WorkoutName = "Strength Training"
+                        });
                 });
 
             modelBuilder.Entity("FitDash.Domain.Meal", b =>

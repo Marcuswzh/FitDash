@@ -77,7 +77,7 @@
     private async Task AddWorkout()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Workout.Add(Workout);
+        context.Workouts.Add(Workout);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/workouts");
     }

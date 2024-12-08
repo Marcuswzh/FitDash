@@ -87,7 +87,7 @@
     private async Task AddMeal()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Meal.Add(Meal);
+        context.Meals.Add(Meal);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/meals");
     }

@@ -87,7 +87,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        ProgressTracker ??= await context.ProgressTracker.FirstOrDefaultAsync(m => m.Id == Id);
+        ProgressTracker ??= await context.ProgressTrackers.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (ProgressTracker is null)
         {
@@ -124,6 +124,6 @@ else
     private bool ProgressTrackerExists(int id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.ProgressTracker.Any(e => e.Id == id);
+        return context.ProgressTrackers.Any(e => e.Id == id);
     }
 }

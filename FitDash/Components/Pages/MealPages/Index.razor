@@ -1,46 +1,139 @@
-﻿@page "/meals"
+﻿@page "/meals/edit"
 @using Microsoft.EntityFrameworkCore
-@using Microsoft.AspNetCore.Components.QuickGrid
 @using FitDash.Domain
-@using FitDash.Data
-@implements IAsyncDisposable
 @inject IDbContextFactory<FitDash.Data.FitDashContext> DbFactory
+@inject NavigationManager NavigationManager
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Edit</PageTitle>
 
-<h1>Index</h1>
+<h1>Edit</h1>
 
-<p>
-    <a href="meals/create">Create New</a>
-</p>
+<h2>Meal</h2>
+<hr />
+@if (Meal is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Meal" OnValidSubmit="UpdateMeal" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert" />
+                <input type="hidden" name="Meal.Id" value="@Meal.Id" />
+                <div class="mb-3">
+                    <label for="userid" class="form-label">UserID:</label>
+                    <InputNumber id="userid" @bind-Value="Meal.UserID" class="form-control" />
+                    <ValidationMessage For="() => Meal.UserID" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="mealname" class="form-label">MealName:</label>
+                    <InputText id="mealname" @bind-Value="Meal.MealName" class="form-control" />
+                    <ValidationMessage For="() => Meal.MealName" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="calories" class="form-label">Calories:</label>
+                    <InputNumber id="calories" @bind-Value="Meal.Calories" class="form-control" />
+                    <ValidationMessage For="() => Meal.Calories" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="proteins" class="form-label">Proteins:</label>
+                    <InputNumber id="proteins" @bind-Value="Meal.Proteins" class="form-control" />
+                    <ValidationMessage For="() => Meal.Proteins" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="fats" class="form-label">Fats:</label>
+                    <InputNumber id="fats" @bind-Value="Meal.Fats" class="form-control" />
+                    <ValidationMessage For="() => Meal.Fats" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="carbs" class="form-label">Carbs:</label>
+                    <InputNumber id="carbs" @bind-Value="Meal.Carbs" class="form-control" />
+                    <ValidationMessage For="() => Meal.Carbs" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="mealdate" class="form-label">MealDate:</label>
+                    <InputDate id="mealdate" @bind-Value="Meal.MealDate" class="form-control" />
+                    <ValidationMessage For="() => Meal.MealDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="datecreated" class="form-label">DateCreated:</label>
+                    <InputDate id="datecreated" @bind-Value="Meal.DateCreated" class="form-control" />
+                    <ValidationMessage For="() => Meal.DateCreated" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="dateupdated" class="form-label">DateUpdated:</label>
+                    <InputDate id="dateupdated" @bind-Value="Meal.DateUpdated" class="form-control" />
+                    <ValidationMessage For="() => Meal.DateUpdated" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="createdby" class="form-label">CreatedBy:</label>
+                    <InputText id="createdby" @bind-Value="Meal.CreatedBy" class="form-control" />
+                    <ValidationMessage For="() => Meal.CreatedBy" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="updatedby" class="form-label">UpdatedBy:</label>
+                    <InputText id="updatedby" @bind-Value="Meal.UpdatedBy" class="form-control" />
+                    <ValidationMessage For="() => Meal.UpdatedBy" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
 
-<QuickGrid Class="table" Items="context.Meal">
-    <PropertyColumn Property="meal => meal.UserID" />
-    <PropertyColumn Property="meal => meal.MealName" />
-    <PropertyColumn Property="meal => meal.Calories" />
-    <PropertyColumn Property="meal => meal.Proteins" />
-    <PropertyColumn Property="meal => meal.Fats" />
-    <PropertyColumn Property="meal => meal.Carbs" />
-    <PropertyColumn Property="meal => meal.MealDate" />
-    <PropertyColumn Property="meal => meal.DateCreated" />
-    <PropertyColumn Property="meal => meal.DateUpdated" />
-    <PropertyColumn Property="meal => meal.CreatedBy" />
-    <PropertyColumn Property="meal => meal.UpdatedBy" />
-
-    <TemplateColumn Context="meal">
-        <a href="@($"meals/edit?id={meal.Id}")">Edit</a> |
-        <a href="@($"meals/details?id={meal.Id}")">Details</a> |
-        <a href="@($"meals/delete?id={meal.Id}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+<div>
+    <a href="/meals">Back to List</a>
+</div>
 
 @code {
-    private FitDashContext context = default!;
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
 
-    protected override void OnInitialized()
+    [SupplyParameterFromForm]
+    private Meal? Meal { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        context = DbFactory.CreateDbContext();
+        using var context = DbFactory.CreateDbContext();
+        Meal ??= await context.Meals.FirstOrDefaultAsync(m => m.Id == Id); // Corrected DbSet name
+
+        if (Meal is null)
+        {
+            NavigationManager.NavigateTo("/notfound"); // Ensure '/notfound' exists
+        }
     }
 
-    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+    private async Task UpdateMeal()
+    {
+        if (Meal is null) return;  // If meal is still null, do nothing.
+
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(Meal).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!MealExists(Meal.Id))
+            {
+                NavigationManager.NavigateTo("/notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/meals");
+    }
+
+    private bool MealExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Meals.Any(e => e.Id == id);  // Corrected DbSet name
+    }
 }

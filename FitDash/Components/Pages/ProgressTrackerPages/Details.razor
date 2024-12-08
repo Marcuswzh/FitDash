@@ -52,7 +52,7 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        progresstracker = await context.ProgressTracker.FirstOrDefaultAsync(m => m.Id == Id);
+        progresstracker = await context.ProgressTrackers.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (progresstracker is null)
         {

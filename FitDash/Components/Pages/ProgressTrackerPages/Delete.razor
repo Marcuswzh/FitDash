@@ -16,7 +16,8 @@
     {
         <p><em>Loading...</em></p>
     }
-    else {
+    else
+    {
         <dl class="row">
             <dt class="col-sm-2">UserID</dt>
             <dd class="col-sm-10">@progresstracker.UserID</dd>
@@ -69,19 +70,26 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        progresstracker = await context.ProgressTracker.FirstOrDefaultAsync(m => m.Id == Id);
+        progresstracker = await context.ProgressTrackers.FirstOrDefaultAsync(m => m.Id == Id); // Corrected DbSet name
 
         if (progresstracker is null)
         {
-            NavigationManager.NavigateTo("notfound");
+            NavigationManager.NavigateTo("/notfound"); // Ensure '/notfound' exists
         }
     }
 
     private async Task DeleteProgressTracker()
     {
-        using var context = DbFactory.CreateDbContext();
-        context.ProgressTracker.Remove(progresstracker!);
-        await context.SaveChangesAsync();
-        NavigationManager.NavigateTo("/progresstrackers");
+        if (progresstracker is not null)
+        {
+            using var context = DbFactory.CreateDbContext();
+            context.ProgressTrackers.Remove(progresstracker);  // Corrected DbSet name
+            await context.SaveChangesAsync();
+            NavigationManager.NavigateTo("/progresstrackers");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/progresstrackers"); // Optional: Redirect if not found
+        }
     }
 }

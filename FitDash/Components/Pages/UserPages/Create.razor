@@ -92,7 +92,7 @@
     private async Task AddUser()
     {
         using var context = DbFactory.CreateDbContext();
-        context.User.Add(User);
+        context.Users.Add(User);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/users");
     }

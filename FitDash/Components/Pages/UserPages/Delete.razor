@@ -81,7 +81,7 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        user = await context.User.FirstOrDefaultAsync(m => m.Id == Id);
+        user = await context.Users.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (user is null)
         {
@@ -92,7 +92,7 @@
     private async Task DeleteUser()
     {
         using var context = DbFactory.CreateDbContext();
-        context.User.Remove(user!);
+        context.Users.Remove(user!);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/users");
     }

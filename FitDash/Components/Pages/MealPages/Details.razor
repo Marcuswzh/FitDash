@@ -15,7 +15,8 @@
     {
         <p><em>Loading...</em></p>
     }
-    else {
+    else
+    {
         <dl class="row">
             <dt class="col-sm-2">UserID</dt>
             <dd class="col-sm-10">@meal.UserID</dd>
@@ -56,11 +57,11 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        meal = await context.Meal.FirstOrDefaultAsync(m => m.Id == Id);
+        meal = await context.Meals.FirstOrDefaultAsync(m => m.Id == Id); // Use 'Meals' (plural)
 
         if (meal is null)
         {
-            NavigationManager.NavigateTo("notfound");
+            NavigationManager.NavigateTo("/notfound"); // Ensure '/notfound' exists
         }
     }
 }
