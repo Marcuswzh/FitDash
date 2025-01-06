@@ -16,9 +16,12 @@ namespace FitDash.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Apply seed data configurations
-            modelBuilder.ApplyConfiguration(new UserSeed());
-            modelBuilder.ApplyConfiguration(new WorkoutSeed());
+            // Apply seed data configurations in correct order
+            modelBuilder.ApplyConfiguration(new RoleSeed());       // Roles must be seeded first
+            modelBuilder.ApplyConfiguration(new ClientSeed());     // Admin user must be seeded next
+            modelBuilder.ApplyConfiguration(new UserRoleSeed());   // UserRole depends on Roles and Users
+            modelBuilder.ApplyConfiguration(new UserSeed());       // Additional users (domain-specific)
+            modelBuilder.ApplyConfiguration(new WorkoutSeed());    // Other domain entities
             modelBuilder.ApplyConfiguration(new MealSeed());
             modelBuilder.ApplyConfiguration(new ProgressTrackerSeed());
         }

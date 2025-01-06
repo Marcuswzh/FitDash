@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitDash.Migrations
 {
     [DbContext(typeof(FitDashContext))]
-    [Migration("20250106135510_SeedUserRole")]
-    partial class SeedUserRole
+    [Migration("20250106174241_AddIdentity")]
+    partial class AddIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,6 +94,26 @@ namespace FitDash.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ce57435f-b513-4f87-9694-7fbd21cdf4ce",
+                            Email = "admin@localhost.com",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
+                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELeF1Pf/AneV0ueaWwWQMo+4i366vlKkov0j4vtQE3Qjv9nEfg7yX0NTq5Sy3vDXYQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "755a31ec-f01a-42fd-b63b-65207ab0ff96",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@localhost.com"
+                        });
                 });
 
             modelBuilder.Entity("FitDash.Domain.Meal", b =>
@@ -151,10 +171,10 @@ namespace FitDash.Migrations
                             Calories = 400f,
                             Carbs = 50f,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1133),
-                            DateUpdated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1134),
+                            DateCreated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4582),
+                            DateUpdated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4583),
                             Fats = 10f,
-                            MealDate = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1133),
+                            MealDate = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4581),
                             MealName = "Breakfast",
                             Proteins = 25f,
                             UpdatedBy = "System",
@@ -166,10 +186,10 @@ namespace FitDash.Migrations
                             Calories = 600f,
                             Carbs = 70f,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1141),
-                            DateUpdated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1141),
+                            DateCreated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4593),
+                            DateUpdated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4594),
                             Fats = 15f,
-                            MealDate = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1140),
+                            MealDate = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4592),
                             MealName = "Lunch",
                             Proteins = 40f,
                             UpdatedBy = "System",
@@ -225,7 +245,7 @@ namespace FitDash.Migrations
                             BMI = 24.5f,
                             BodyFatPercentage = 20f,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateRecorded = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1340),
+                            DateRecorded = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(5159),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserID = 1,
                             Weight = 70f
@@ -236,7 +256,7 @@ namespace FitDash.Migrations
                             BMI = 22f,
                             BodyFatPercentage = 18f,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateRecorded = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(1346),
+                            DateRecorded = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(5163),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserID = 2,
                             Weight = 60f
@@ -301,9 +321,9 @@ namespace FitDash.Migrations
                         {
                             Id = 1,
                             ActivityLevel = "Active",
-                            DateCreated = new DateTime(2025, 1, 6, 21, 55, 8, 930, DateTimeKind.Local).AddTicks(497),
+                            DateCreated = new DateTime(2025, 1, 7, 1, 42, 39, 521, DateTimeKind.Local).AddTicks(4023),
                             DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(2025, 1, 6, 21, 55, 8, 930, DateTimeKind.Local).AddTicks(521),
+                            DateUpdated = new DateTime(2025, 1, 7, 1, 42, 39, 521, DateTimeKind.Local).AddTicks(4054),
                             Email = "johndoe@example.com",
                             Gender = "Male",
                             Height = 175f,
@@ -315,9 +335,9 @@ namespace FitDash.Migrations
                         {
                             Id = 2,
                             ActivityLevel = "Active",
-                            DateCreated = new DateTime(2025, 1, 6, 21, 55, 8, 930, DateTimeKind.Local).AddTicks(526),
+                            DateCreated = new DateTime(2025, 1, 7, 1, 42, 39, 521, DateTimeKind.Local).AddTicks(4060),
                             DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(2025, 1, 6, 21, 55, 8, 930, DateTimeKind.Local).AddTicks(528),
+                            DateUpdated = new DateTime(2025, 1, 7, 1, 42, 39, 521, DateTimeKind.Local).AddTicks(4061),
                             Email = "janedoe@example.com",
                             Gender = "Male",
                             Height = 175f,
@@ -374,22 +394,22 @@ namespace FitDash.Migrations
                         {
                             Id = 1,
                             CaloriesBurned = 300f,
-                            DateCreated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(917),
-                            DateUpdated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(918),
+                            DateCreated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4320),
+                            DateUpdated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4321),
                             Duration = 30,
                             UserID = 1,
-                            WorkoutDate = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(916),
+                            WorkoutDate = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4318),
                             WorkoutName = "Cardio"
                         },
                         new
                         {
                             Id = 2,
                             CaloriesBurned = 400f,
-                            DateCreated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(922),
-                            DateUpdated = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(923),
+                            DateCreated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4325),
+                            DateUpdated = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4326),
                             Duration = 45,
                             UserID = 2,
-                            WorkoutDate = new DateTime(2025, 1, 6, 13, 55, 8, 930, DateTimeKind.Utc).AddTicks(921),
+                            WorkoutDate = new DateTime(2025, 1, 6, 17, 42, 39, 521, DateTimeKind.Utc).AddTicks(4324),
                             WorkoutName = "Strength Training"
                         });
                 });
@@ -419,6 +439,20 @@ namespace FitDash.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -506,6 +540,13 @@ namespace FitDash.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            RoleId = "ad2bcf0c-20db-474f-8407-5a6b159518ba"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
