@@ -1,17 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using FitDash.Domain;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using FitDash.Data;
 using FitDash.Configurations.Entities;
 
 namespace FitDash.Data
 {
-    public class FitDashContext : DbContext
+    public class FitDashContext(DbContextOptions<FitDashContext> options) : IdentityDbContext<FitDashUser>(options)
     {
-        public FitDashContext(DbContextOptions<FitDashContext> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<FitDash.Domain.User> Users { get; set; } = default!;
+    public DbSet<FitDash.Domain.User> Users { get; set; } = default!;
         public DbSet<FitDash.Domain.Workout> Workouts { get; set; } = default!;
         public DbSet<FitDash.Domain.Meal> Meals { get; set; } = default!;
         public DbSet<FitDash.Domain.ProgressTracker> ProgressTrackers { get; set; } = default!;
