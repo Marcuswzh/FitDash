@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FitDash.Migrations
 {
     /// <inheritdoc />
-    public partial class Current : Migration
+    public partial class Now : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -34,7 +34,7 @@ namespace FitDash.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,9 +59,9 @@ namespace FitDash.Migrations
                 {
                     table.PrimaryKey("PK_Meals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Meals_User_UserID",
+                        name: "FK_Meals_Users_UserID",
                         column: x => x.UserID,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -86,9 +86,9 @@ namespace FitDash.Migrations
                 {
                     table.PrimaryKey("PK_ProgressTrackers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProgressTrackers_User_UserID",
+                        name: "FK_ProgressTrackers_Users_UserID",
                         column: x => x.UserID,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -113,20 +113,20 @@ namespace FitDash.Migrations
                 {
                     table.PrimaryKey("PK_Workouts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Workouts_User_UserID",
+                        name: "FK_Workouts_Users_UserID",
                         column: x => x.UserID,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "User",
+                table: "Users",
                 columns: new[] { "Id", "ActivityLevel", "CreatedBy", "DateCreated", "DateOfBirth", "DateUpdated", "Email", "Gender", "Height", "Name", "Password", "UpdatedBy", "Weight" },
                 values: new object[,]
                 {
-                    { 1, "Active", null, new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9138), new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9155), "johndoe@example.com", "Male", 175f, "John Doe", "P@ssword1", null, 70f },
-                    { 2, "Active", null, new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159), new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159), "janedoe@example.com", "Male", 175f, "Jane Doe", "P@ssword1", null, 70f }
+                    { 1, "Active", null, new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(200), new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(222), "johndoe@example.com", "Male", 175f, "John Doe", "P@ssword1", null, 70f },
+                    { 2, "Active", null, new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(228), new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(229), "janedoe@example.com", "Male", 175f, "Jane Doe", "P@ssword1", null, 70f }
                 });
 
             migrationBuilder.InsertData(
@@ -134,8 +134,8 @@ namespace FitDash.Migrations
                 columns: new[] { "Id", "Calories", "Carbs", "CreatedBy", "DateCreated", "DateUpdated", "Fats", "MealDate", "MealName", "Proteins", "UpdatedBy", "UserID" },
                 values: new object[,]
                 {
-                    { 1, 400f, 50f, "System", new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536), new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9537), 10f, new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536), "Breakfast", 25f, "System", 1 },
-                    { 2, 600f, 70f, "System", new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540), new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540), 15f, new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9539), "Lunch", 40f, "System", 2 }
+                    { 1, 400f, 50f, "System", new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(833), new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(834), 10f, new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(831), "Breakfast", 25f, "System", 1 },
+                    { 2, 600f, 70f, "System", new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(840), new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(841), 15f, new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(840), "Lunch", 40f, "System", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -143,8 +143,8 @@ namespace FitDash.Migrations
                 columns: new[] { "Id", "BMI", "BodyFatPercentage", "CreatedBy", "DateCreated", "DateRecorded", "DateUpdated", "UpdatedBy", "UserID", "Weight" },
                 values: new object[,]
                 {
-                    { 1, 24.5f, 20f, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9643), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, 70f },
-                    { 2, 22f, 18f, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9645), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, 60f }
+                    { 1, 24.5f, 20f, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(1006), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, 70f },
+                    { 2, 22f, 18f, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(1011), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, 60f }
                 });
 
             migrationBuilder.InsertData(
@@ -152,8 +152,8 @@ namespace FitDash.Migrations
                 columns: new[] { "Id", "CaloriesBurned", "CreatedBy", "DateCreated", "DateUpdated", "Duration", "UpdatedBy", "UserID", "WorkoutDate", "WorkoutName" },
                 values: new object[,]
                 {
-                    { 1, 300f, null, new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409), new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409), 30, null, 1, new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9408), "Cardio" },
-                    { 2, 400f, null, new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411), new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9412), 45, null, 2, new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411), "Strength Training" }
+                    { 1, 300f, null, new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(605), new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(606), 30, null, 1, new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(604), "Cardio" },
+                    { 2, 400f, null, new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(612), new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(612), 45, null, 2, new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(611), "Strength Training" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -185,7 +185,7 @@ namespace FitDash.Migrations
                 name: "Workouts");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

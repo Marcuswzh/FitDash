@@ -77,10 +77,10 @@ namespace FitDash.Migrations
                             Calories = 400f,
                             Carbs = 50f,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536),
-                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9537),
+                            DateCreated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(833),
+                            DateUpdated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(834),
                             Fats = 10f,
-                            MealDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9536),
+                            MealDate = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(831),
                             MealName = "Breakfast",
                             Proteins = 25f,
                             UpdatedBy = "System",
@@ -92,10 +92,10 @@ namespace FitDash.Migrations
                             Calories = 600f,
                             Carbs = 70f,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540),
-                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9540),
+                            DateCreated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(840),
+                            DateUpdated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(841),
                             Fats = 15f,
-                            MealDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9539),
+                            MealDate = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(840),
                             MealName = "Lunch",
                             Proteins = 40f,
                             UpdatedBy = "System",
@@ -151,7 +151,7 @@ namespace FitDash.Migrations
                             BMI = 24.5f,
                             BodyFatPercentage = 20f,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateRecorded = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9643),
+                            DateRecorded = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(1006),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserID = 1,
                             Weight = 70f
@@ -162,7 +162,7 @@ namespace FitDash.Migrations
                             BMI = 22f,
                             BodyFatPercentage = 18f,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateRecorded = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9645),
+                            DateRecorded = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(1011),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserID = 2,
                             Weight = 60f
@@ -220,16 +220,16 @@ namespace FitDash.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             ActivityLevel = "Active",
-                            DateCreated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9138),
+                            DateCreated = new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(200),
                             DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9155),
+                            DateUpdated = new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(222),
                             Email = "johndoe@example.com",
                             Gender = "Male",
                             Height = 175f,
@@ -241,9 +241,9 @@ namespace FitDash.Migrations
                         {
                             Id = 2,
                             ActivityLevel = "Active",
-                            DateCreated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159),
+                            DateCreated = new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(228),
                             DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(2024, 12, 8, 23, 24, 16, 471, DateTimeKind.Local).AddTicks(9159),
+                            DateUpdated = new DateTime(2025, 1, 6, 11, 45, 21, 222, DateTimeKind.Local).AddTicks(229),
                             Email = "janedoe@example.com",
                             Gender = "Male",
                             Height = 175f,
@@ -300,22 +300,22 @@ namespace FitDash.Migrations
                         {
                             Id = 1,
                             CaloriesBurned = 300f,
-                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409),
-                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9409),
+                            DateCreated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(605),
+                            DateUpdated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(606),
                             Duration = 30,
                             UserID = 1,
-                            WorkoutDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9408),
+                            WorkoutDate = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(604),
                             WorkoutName = "Cardio"
                         },
                         new
                         {
                             Id = 2,
                             CaloriesBurned = 400f,
-                            DateCreated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411),
-                            DateUpdated = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9412),
+                            DateCreated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(612),
+                            DateUpdated = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(612),
                             Duration = 45,
                             UserID = 2,
-                            WorkoutDate = new DateTime(2024, 12, 8, 15, 24, 16, 471, DateTimeKind.Utc).AddTicks(9411),
+                            WorkoutDate = new DateTime(2025, 1, 6, 3, 45, 21, 222, DateTimeKind.Utc).AddTicks(611),
                             WorkoutName = "Strength Training"
                         });
                 });
